@@ -1,7 +1,7 @@
 from acoustools.Mesh import load_scatterer
 from acoustools.BEM import compute_E, propagate_BEM_pressure
 from acoustools.Solvers import iterative_backpropagation
-from acoustools.Utilities import create_points, TOP_BOARD, propagate_abs
+from acoustools.Utilities import create_points, TOP_BOARD
 
 from acoustools.Visualiser import Visualise, ABC
 
