@@ -22,7 +22,7 @@ p_gspat = propagate_abs(x_gspat, p, board=board)
 x_wgs = wgs(p, board=board)
 p_wgs = propagate_abs(x_wgs, p, board=board)
 
-r = 100
+r = 500
 Visualise(*ABC(0.07), [x_niave, x_ib, x_gspat, x_wgs], colour_functions=[propagate_abs,propagate_abs,propagate_abs,propagate_abs], res=(r,r))
 
 

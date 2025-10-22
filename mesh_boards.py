@@ -19,7 +19,7 @@ teapot_board, teapot_norms = mesh_to_board('./data/Teapot_smooth.stl')
 x_teapot = gspat(p, board=teapot_board, norms=teapot_norms)
 
 
-r = 200
+r = 500
 Visualise(*ABC(0.1),[x_flat,x_sphere, x_cube, x_teapot] ,res=(r,r), vmax=8000, arangement=(2,2),
           colour_functions=[propagate_abs,propagate_abs,propagate_abs, propagate_abs], 
           colour_function_args=[{'board':flat_board, 'norms':flat_norms},
