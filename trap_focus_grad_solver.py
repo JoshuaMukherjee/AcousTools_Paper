@@ -27,7 +27,8 @@ p = create_points(2, y=0, max_pos=0.04, min_pos=-0.04)
 
 x = gradient_descent_solver(p, objective=objective, board=board, log=False, objective_params={'alpha':1.32e10}, iters=1000)
 
-
+import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 30, 'font.family' : 'times',})
 r = 500
 Visualise(*ABC(0.05), x, points=p, colour_functions=[propagate_abs, gorkov], res = (r,r),
           link_ax=None, arangement=(2,1), clr_labels=["Pressure (Pa)", "Gor'kov Potential (J)"])

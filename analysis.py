@@ -12,7 +12,7 @@ p = create_points(1,x=0,y=0,z=0)
 
 board = TRANSDUCERS
 
-x = wgs(p + create_points(1,x=0.001,y=0.001,z=0.001),
+x = wgs(p + create_points(1,x=0,y=0.0001,z=0.00),
          board=board)
 
 def force_x(activations, points , board=board):
@@ -32,6 +32,10 @@ def force_z(activations, points , board=board):
 
 
 r = 500
+
+import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 40, 'font.family' : 'times',})
+
 Visualise(*ABC(0.01, origin=p), x,
           colour_functions=[propagate_abs, 
                             gorkov, 
@@ -41,5 +45,6 @@ Visualise(*ABC(0.01, origin=p), x,
           clr_labels=["Pressure (Pa)", 
                         "Gor'kov Potential (J)", 
                         "Fx (N)", "Fy (N)", "Fz (N)", 
-                        "Stiffness (N/m)" ])
+                        "Stiffness (N/m)" ]
+                        )
 

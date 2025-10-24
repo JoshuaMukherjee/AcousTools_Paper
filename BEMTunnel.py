@@ -17,6 +17,10 @@ x = iterative_backpropagation(p, board=board, A=E)
 x_p, = iterative_backpropagation(p, board=board)
 
 r = 500
+
+import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 30, 'font.family' : 'times',})
+
 Visualise(*ABC(0.1), [x_p,x], points=p, colour_functions=[propagate_BEM_pressure,propagate_BEM_pressure], res=(r,r), vmax=5000, arangement=(2,1),
                         colour_function_args=[{'scatterer':scatterer,'board':board, 'H':H, 'path':'./data/'},
                                               {'scatterer':scatterer,'board':board, 'H':H, 'path':'./data/'}])

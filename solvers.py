@@ -4,6 +4,7 @@ from acoustools.Solvers import naive, iterative_backpropagation, gspat, wgs
 from acoustools.Visualiser import Visualise, ABC
 
 import matplotlib.pyplot as plt
+plt.rcParams.update({'font.size': 50, 'font.family' : 'times',})
 
 board = TRANSDUCERS
 
@@ -23,7 +24,7 @@ x_wgs = wgs(p, board=board)
 p_wgs = propagate_abs(x_wgs, p, board=board)
 
 r = 500
-Visualise(*ABC(0.07), [x_niave, x_ib, x_gspat, x_wgs], colour_functions=[propagate_abs,propagate_abs,propagate_abs,propagate_abs], res=(r,r))
+# Visualise(*ABC(0.07), [x_niave, x_ib, x_gspat, x_wgs], colour_functions=[propagate_abs,propagate_abs,propagate_abs,propagate_abs], res=(r,r))
 
 
 pos = 0
