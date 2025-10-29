@@ -31,7 +31,7 @@ def force_z(activations, points , board=board):
     return Fz
 
 
-r = 500
+r = 100
 
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 40, 'font.family' : 'times',})
@@ -45,6 +45,8 @@ Visualise(*ABC(0.01, origin=p), x,
           clr_labels=["Pressure (Pa)", 
                         "Gor'kov Potential (J)", 
                         "Fx (N)", "Fy (N)", "Fz (N)", 
-                        "Stiffness (N/m)" ]
+                        "Stiffness (N/m)" ],
+            cmaps=['hot', 'seismic', 'Spectral_r', 'Spectral_r', 'Spectral_r', 'berlin']
                         )
+
 
