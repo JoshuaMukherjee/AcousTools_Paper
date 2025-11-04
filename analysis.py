@@ -31,7 +31,7 @@ def force_z(activations, points , board=board):
     return Fz
 
 
-r = 100
+r = 500
 
 import matplotlib.pyplot as plt
 plt.rcParams.update({'font.size': 40, 'font.family' : 'times',})

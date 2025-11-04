@@ -1,7 +1,7 @@
 from acoustools.Mesh import load_scatterer
 from acoustools.BEM import compute_E, propagate_BEM_pressure
 from acoustools.BEM.Force import BEM_compute_force
-from acoustools.Utilities import create_points, TOP_BOARD, TRANSDUCERS
+from acoustools.Utilities import create_points, TOP_BOARD, TRANSDUCERS, add_lev_sig
 from acoustools.Solvers import wgs
 
 from acoustools.Visualiser import ABC, Visualise_single, get_image_positions, get_point_pos
@@ -10,29 +10,41 @@ import torch
 
 torch.manual_seed(1)
 
+# bunny = load_scatterer('data/bunny-lam2.stl', rotz=90)
+# path = './data'
+
+# p = create_points(2,1,y=0, min_pos=0.02, max_pos=0.04)
+# board = TOP_BOARD
+
+# E,F,G,H = compute_E(bunny, points=p, board=board, path=path, return_components=True)
+
+# x = wgs(p, board=board, A=E)
+
 bunny = load_scatterer('data/bunny-lam2.stl', rotz=90)
 path = './data'
 
-p = create_points(2,1,y=0, min_pos=0.02, max_pos=0.04)
+p = create_points(1,1,x=0,y=0, z=0.04)
 board = TOP_BOARD
 
 E,F,G,H = compute_E(bunny, points=p, board=board, path=path, return_components=True)
 
-x = wgs(p, board=board, A=E)
+x = wgs(p, A=E, board=board)
+x = add_lev_sig(x, board=board, mode='Twin')
+
 
 r = 500
-size = 0.05
-abc = ABC(size)
+size = 0.03
+abc = ABC(size, origin=p-create_points(1,1,0,0,0.015))
 
 im = Visualise_single(*abc, x, res=(r,r),
           colour_function=propagate_BEM_pressure, 
           colour_function_args={"scatterer":bunny, "H":H,"path":path,"board":board, 'smooth_distance':7e-4})
 
 
-scale = 10
-pt = (p[:,:,0] + p[:,:,1]) / 2
-pt = pt.unsqueeze(2)
-img_pts = get_image_positions(*ABC(0.015, origin=pt), res=(int(r/scale), int(r/scale)))
+scale = 40
+# pt = (p[:,:,0] + p[:,:,1]) / 2
+# pt = pt.unsqueeze(2)
+img_pts = get_image_positions(*ABC(0.012, origin=p), res=(int(r/scale), int(r/scale)))
 
 img_pts[:,0] += ((size/scale)/(2*r)) 
 img_pts[:,2] -= ((size/scale)/(2*r)) 
@@ -65,7 +77,7 @@ plt.yticks([])
 plt.colorbar(label="Pressure (Pa)")
 
 
-plt.quiver(img_x, img_z, force_x, force_z, scale=2e-2 , width=0.001, color='blue', label = 'Force')
+plt.quiver(img_x, img_z, force_x, force_z, scale=5e-3 , width=0.005, color='blue', label = 'Force')
 
 
 plt.show()
