@@ -41,7 +41,7 @@ im = Visualise_single(*abc, x, res=(r,r),
           colour_function_args={"scatterer":bunny, "H":H,"path":path,"board":board, 'smooth_distance':7e-4})
 
 
-scale = 40
+scale = 20
 # pt = (p[:,:,0] + p[:,:,1]) / 2
 # pt = pt.unsqueeze(2)
 img_pts = get_image_positions(*ABC(0.012, origin=p), res=(int(r/scale), int(r/scale)))
@@ -77,7 +77,7 @@ plt.yticks([])
 plt.colorbar(label="Pressure (Pa)")
 
 
-plt.quiver(img_x, img_z, force_x, force_z, scale=5e-3 , width=0.005, color='blue', label = 'Force')
+plt.quiver(img_x, img_z, force_x, force_z, scale=5e-3 , width=0.002, color='blue', label = 'Force')
 
 
 plt.show()
